@@ -8,6 +8,7 @@ package e_comerce;
 import Dao.ClienteDao;
 import e_comerce.Mantenimiento.ManAgente;
 import e_comerce.Mantenimiento.ManCliente;
+import e_comerce.Mantenimiento.ManTarifas;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,8 +19,7 @@ public class Clientes extends javax.swing.JInternalFrame {
 
     DefaultTableModel modelo = new DefaultTableModel();
     ClienteDao cdao = new ClienteDao();
-    
-    
+
     public Clientes() {
         initComponents();
         modelo.addColumn("RucCliente");
@@ -41,7 +41,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         modelo.addColumn("Corp");
         tblClientes.setModel(modelo);
         cdao.Listar();
-        
+
     }
 
     /**
@@ -58,6 +58,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         tblClientes = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtbuscarC = new javax.swing.JTextField();
+        jComboBox4 = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -94,17 +95,21 @@ public class Clientes extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione envio", "Enviar a Agentes", "Enviar a Tarifas" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1284, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(524, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtbuscarC, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(259, 259, 259))
+                .addGap(117, 117, 117)
+                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(86, 86, 86))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +117,8 @@ public class Clientes extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtbuscarC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtbuscarC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -131,22 +137,36 @@ public class Clientes extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-        
+
     private void txtbuscarCMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtbuscarCMousePressed
-        
+
     }//GEN-LAST:event_txtbuscarCMousePressed
 
     private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
-        for (int i = 0; i < tblClientes.getRowCount(); i++) {
-            int fila = tblClientes.getSelectedRow();
-            
-            String enviar = null;
-            String cod = tblClientes.getValueAt(fila, 0).toString();       
-            String nom = tblClientes.getValueAt(fila, 1).toString();       
-            enviar = cod +'-'+nom;
-            ManAgente.lblRucCliente.setText(enviar);
+        if (isSelected == jComboBox4.getSelectedItem().equals("Enviar a Agentes")) {
+            for (int i = 0; i < tblClientes.getRowCount(); i++) {
+                int fila = tblClientes.getSelectedRow();
+
+                String enviar = null;
+                String cod = tblClientes.getValueAt(fila, 0).toString();
+                String nom = tblClientes.getValueAt(fila, 1).toString();
+                enviar = cod + '-' + nom;
+                ManAgente.lblRucCliente.setText(enviar);
+            }
+        } else if (isSelected == jComboBox4.getSelectedItem().equals("Enviar a Tarifas")) {
+            for (int i = 0; i < tblClientes.getRowCount(); i++) {
+                int fila = tblClientes.getSelectedRow();
+
+                String ruc = tblClientes.getValueAt(fila, 0).toString();
+                String nom = tblClientes.getValueAt(fila, 1).toString();
+
+                ManTarifas.lblRuc.setText(ruc);
+                ManTarifas.lblNombre.setText(nom);
+
+            }
         }
-        
+
+
     }//GEN-LAST:event_tblClientesMouseClicked
 
     ClienteDao cd = new ClienteDao();
@@ -156,6 +176,7 @@ public class Clientes extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

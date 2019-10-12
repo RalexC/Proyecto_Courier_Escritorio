@@ -10,7 +10,9 @@ import e_comerce.Mantenimiento.ManAgente;
 import e_comerce.Mantenimiento.ManCliente;
 import e_comerce.Mantenimiento.ManPorcionTerrestre;
 import e_comerce.Mantenimiento.ManRutas;
+import e_comerce.Mantenimiento.ManTarifas;
 import e_comerce.Mantenimiento.MantCentroCostos;
+import e_comerce.Transacciones.Ordenes;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
@@ -82,12 +84,16 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -228,6 +234,14 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem11);
 
+        jMenuItem18.setText("Tarifas");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem18);
+
         jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Mantenimiento");
@@ -284,6 +298,26 @@ public class Principal extends javax.swing.JFrame {
         jMenu4.add(jMenuItem17);
 
         jMenuBar1.add(jMenu4);
+
+        jMenu3.setText("Transacciones");
+
+        jMenuItem6.setText("Tarifas");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem6);
+
+        jMenuItem8.setText("Ordenes");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem8);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -438,6 +472,44 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
+    ManTarifas tf;
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        
+        if (estacerrado(tf)) {
+            tf = new ManTarifas();
+            escritorio.add(tf).setLocation(250, 3);
+            tf.show();
+        } else {
+            JOptionPane.showMessageDialog(this, "La ventana Mantenimiento Tarifas\n ya esta abierta !!!", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    Tarifas t;
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        if (estacerrado(t)) {
+            t = new Tarifas();
+            escritorio.add(t).setLocation(250, 3);
+            t.show();
+        } else {
+            JOptionPane.showMessageDialog(this, "La ventana Mantenimiento Tarifas\n ya esta abierta !!!", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    
+    Ordenes o;
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        
+        if (estacerrado(o)) {
+            o = new Ordenes();
+            escritorio.add(o).setLocation(250, 3);
+            o.show();
+        } else {
+            JOptionPane.showMessageDialog(this, "La ventana Mantenimiento Ordenes\n ya esta abierta !!!", "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -478,6 +550,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -488,11 +561,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     public static javax.swing.JPanel panel;

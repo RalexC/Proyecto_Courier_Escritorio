@@ -319,8 +319,9 @@
         <Component class="javax.swing.JComboBox" name="cbTipoAgente">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
+              <StringArray count="2">
                 <StringItem index="0" value="A"/>
+                <StringItem index="1" value="M"/>
               </StringArray>
             </Property>
           </Properties>
@@ -545,7 +546,7 @@
                           <Component id="txtBasicoCLargo" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="34" max="32767" attributes="0"/>
+                  <EmptySpace pref="46" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -702,14 +703,14 @@
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="txtSBasicoCLargo" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="cbSPMCC2" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Component id="cbSPMCC2" min="-2" pref="49" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblPM3" max="32767" attributes="0"/>
                       </Group>
                       <Component id="txtSAdicionalCCorto" alignment="0" max="32767" attributes="0"/>
                       <Component id="txtSBasicoCCorto" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="cbSPMCC1" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="cbSPMCC1" min="-2" pref="51" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblPM2" min="-2" pref="61" max="-2" attributes="0"/>
                       </Group>
@@ -937,7 +938,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="335" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="124" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -961,6 +962,7 @@
                     <Column editable="true" title="Title 4" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="autoResizeMode" type="int" value="0"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblMantAgenteMouseClicked"/>

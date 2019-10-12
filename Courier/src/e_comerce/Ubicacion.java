@@ -11,6 +11,7 @@ import e_comerce.Mantenimiento.ManAgente;
 import e_comerce.Mantenimiento.ManCliente;
 import e_comerce.Mantenimiento.ManPorcionTerrestre;
 import e_comerce.Mantenimiento.ManRutas;
+import e_comerce.Mantenimiento.ManTarifas;
 import e_comerce.Mantenimiento.MantCentroCostos;
 import javax.swing.table.DefaultTableModel;
 
@@ -80,7 +81,7 @@ public class Ubicacion extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Buscar X Ubigeo");
 
-        cbEnviar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione envio", "Enviar a Clientes", "Enviar a Agentes", "Enviar a Centro Costo", "Enviar a Ruta Origen", "Enviar a Ruta Destino", "Enviar a Porcion Terrestre" }));
+        cbEnviar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione envio", "Enviar a Clientes", "Enviar a Agentes", "Enviar a Centro Costo", "Enviar a Ruta Origen", "Enviar a Ruta Destino", "Enviar a Porcion Terrestre", "Enviar a Tarifas Origen", "Enviar a Tarifas Destino" }));
         cbEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbEnviarActionPerformed(evt);
@@ -176,6 +177,7 @@ public class Ubicacion extends javax.swing.JInternalFrame {
 
             }
         } else if (isSelected == cbEnviar.getSelectedItem().equals("Enviar a Ruta Destino")) {
+            for (int i = 0; i < tblUbicacion.getRowCount(); i++) {
             int fila = tblUbicacion.getSelectedRow();
             ManRutas.lblCD.setText(tblUbicacion.getValueAt(fila, 0).toString());
 
@@ -186,8 +188,9 @@ public class Ubicacion extends javax.swing.JInternalFrame {
             nombre = dep + ' ' + pro + ' ' + dis;
 
             ManRutas.lblNomCD.setText(nombre);
-
+            }
         }else if (isSelected == cbEnviar.getSelectedItem().equals("Enviar a Porcion Terrestre")) {
+            for (int i = 0; i < tblUbicacion.getRowCount(); i++) {
             int fila = tblUbicacion.getSelectedRow();
             ManPorcionTerrestre.lblUbigeo.setText(tblUbicacion.getValueAt(fila, 0).toString());
             
@@ -198,6 +201,28 @@ public class Ubicacion extends javax.swing.JInternalFrame {
             nombre = dep + ' ' + pro + ' ' + dis;
 
             ManPorcionTerrestre.txtDescripcion.setText(nombre);
+            }
+        }else if (isSelected == cbEnviar.getSelectedItem().equals("Enviar a Tarifas Origen")) {
+            for (int i = 0; i < tblUbicacion.getRowCount(); i++) {
+                int fila = tblUbicacion.getSelectedRow();
+                
+                String ubi = tblUbicacion.getValueAt(fila, 0).toString();
+                String nom = tblUbicacion.getValueAt(fila, 1).toString();
+                
+                ManTarifas.lblOrigen.setText(ubi);
+                ManTarifas.lblNomOrigen.setText(nom);
+            }
+        }else if (isSelected == cbEnviar.getSelectedItem().equals("Enviar a Tarifas Destino")) {
+            for (int i = 0; i < tblUbicacion.getRowCount(); i++) {
+                int fila = tblUbicacion.getSelectedRow();
+                
+                String ubi = tblUbicacion.getValueAt(fila, 0).toString();
+                String nom = tblUbicacion.getValueAt(fila, 1).toString();
+                
+                ManTarifas.lblDestino.setText(ubi);
+                ManTarifas.lblNomDestino.setText(nom);
+                        
+            }
         }
             
     }//GEN-LAST:event_tblUbicacionMouseClicked
@@ -208,7 +233,7 @@ public class Ubicacion extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> cbEnviar;
+    public static javax.swing.JComboBox<String> cbEnviar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable tblUbicacion;

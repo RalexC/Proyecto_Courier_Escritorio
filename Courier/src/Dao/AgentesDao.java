@@ -291,7 +291,7 @@ public class AgentesDao {
                 modelo.addRow(datos);
             }
 //            tamaños para la tabla tblMantAgente
-            int[] anchos = {90, 7, 100, 120, 50, 50, 50, 90, 20, 50, 80, 40, 40, 40, 10, 40, 40, 10, 40, 40, 10, 40, 30, 10, 30, 30};
+            int[] anchos = {110, 50, 150, 150, 100, 100, 100, 150, 70, 120, 110, 100, 100, 100, 60, 100, 100, 60, 100, 100, 60, 100, 100, 60, 100, 100};
             for (int i = 0; i < e_comerce.Mantenimiento.ManAgente.tblMantAgente.getColumnCount(); i++) {
                 e_comerce.Mantenimiento.ManAgente.tblMantAgente.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
             }

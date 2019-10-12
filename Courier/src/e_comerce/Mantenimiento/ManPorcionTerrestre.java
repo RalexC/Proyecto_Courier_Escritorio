@@ -430,6 +430,7 @@ public class ManPorcionTerrestre extends javax.swing.JInternalFrame {
             escritorio.add(u).setLocation(13, 3);
             u.toFront();
             u.setVisible(true);
+            u.cbEnviar.setSelectedItem("Enviar a Porcion Terrestre");
         } else {
             JOptionPane.showMessageDialog(this, "La ventana Ubigeo\n ya esta abierta !!!", "Aviso", JOptionPane.WARNING_MESSAGE);
         }

@@ -6,6 +6,7 @@
 package e_comerce;
 
 import Dao.PorcionTerrestreDao;
+import e_comerce.Transacciones.Ordenes;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,8 +17,7 @@ public class PorcionTerrestre extends javax.swing.JInternalFrame {
 
     DefaultTableModel modelo = new DefaultTableModel();
     PorcionTerrestreDao ptDao = new PorcionTerrestreDao();
-    
-    
+
     public PorcionTerrestre() {
         initComponents();
         modelo.addColumn("Codigo");
@@ -45,6 +45,7 @@ public class PorcionTerrestre extends javax.swing.JInternalFrame {
         tblPorcionTerrestre = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtBuscarPT = new javax.swing.JTextField();
+        cbenviar = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -62,6 +63,11 @@ public class PorcionTerrestre extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblPorcionTerrestre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblPorcionTerrestreMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblPorcionTerrestre);
 
         jLabel1.setText("Porcion Terrestre");
@@ -72,20 +78,24 @@ public class PorcionTerrestre extends javax.swing.JInternalFrame {
             }
         });
 
+        cbenviar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Enviar a Origen PT", "Enviar a Destino PT" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(223, 223, 223)
+                .addGap(173, 173, 173)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtBuscarPT, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addComponent(cbenviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +103,8 @@ public class PorcionTerrestre extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtBuscarPT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBuscarPT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbenviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -106,8 +117,31 @@ public class PorcionTerrestre extends javax.swing.JInternalFrame {
         ptDao.listarPT(txtBuscarPT.getText());
     }//GEN-LAST:event_txtBuscarPTKeyReleased
 
+    private void tblPorcionTerrestreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPorcionTerrestreMouseClicked
+        if (isSelected == cbenviar.getSelectedItem().equals("Enviar a Origen PT")) {
+            for (int i = 0; i < tblPorcionTerrestre.getRowCount(); i++) {
+                int fila = tblPorcionTerrestre.getSelectedRow();
+                Ordenes.lblCOrigen.setText(tblPorcionTerrestre.getValueAt(fila, 1).toString());
+                Ordenes.lblNomOrigen.setText(tblPorcionTerrestre.getValueAt(fila, 2).toString());
+                Ordenes.lblImporte.setText(tblPorcionTerrestre.getValueAt(fila, 5).toString());
+                Ordenes.lblImporteConAgnt.setText(tblPorcionTerrestre.getValueAt(fila, 7).toString());
+
+            }
+        } else if (isSelected == cbenviar.getSelectedItem().equals("Enviar a Destino PT")) {
+            for (int i = 0; i < tblPorcionTerrestre.getRowCount(); i++) {
+                int fila = tblPorcionTerrestre.getSelectedRow();
+                Ordenes.lblCodDestino.setText(tblPorcionTerrestre.getValueAt(fila, 1).toString());
+                Ordenes.lblNomDestino.setText(tblPorcionTerrestre.getValueAt(fila, 2).toString());
+                Ordenes.lblImporteDestino.setText(tblPorcionTerrestre.getValueAt(fila, 5).toString());
+                Ordenes.lblImporteconAgtDestino.setText(tblPorcionTerrestre.getValueAt(fila, 7).toString());
+
+            }
+        }
+    }//GEN-LAST:event_tblPorcionTerrestreMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JComboBox<String> cbenviar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     public static javax.swing.JTable tblPorcionTerrestre;
