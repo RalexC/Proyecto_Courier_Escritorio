@@ -188,66 +188,66 @@ public class AgentesDao {
                 modelo.addRow(datos);
             }
             //            tamaños para la tabla tblAagentes
-            int[] anchos = {90, 7, 100, 120, 50, 50, 50, 90, 20, 50, 80, 40, 40, 40, 10, 40, 40, 10, 40, 40, 10, 40, 30, 10, 30, 30};
-            for (int i = 0; i < e_comerce.Aagente.tblAagentes.getColumnCount(); i++) {
-                e_comerce.Aagente.tblAagentes.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
-            }
+//            int[] anchos = {90, 7, 100, 120, 50, 50, 50, 90, 20, 50, 80, 40, 40, 40, 10, 40, 40, 10, 40, 40, 10, 40, 30, 10, 30, 30};
+//            for (int i = 0; i < e_comerce.Aagente.tblAagentes.getColumnCount(); i++) {
+//                e_comerce.Aagente.tblAagentes.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+//            }
         } catch (SQLException ex) {
             Logger.getLogger(AgentesDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public static void Listar() {
-        try {
-            DefaultTableModel modelo = (DefaultTableModel) e_comerce.Aagente.tblAagentes.getModel();
-            while (modelo.getRowCount() > 0) {
-                modelo.removeRow(0);
-            }
-
-            String sql = "SELECT * FROM AGENTE";
-            ps = cn.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            String datos[] = new String[26];
-            while (rs.next()) {
-                datos[0] = rs.getString("RucAgente");
-                datos[1] = rs.getString("Tipo");
-                datos[2] = rs.getString("Nombre");
-                datos[3] = rs.getString("Direccion");
-                datos[4] = rs.getString("TelefonoFijo");
-                datos[5] = rs.getString("TelefonoCell");
-                datos[6] = rs.getString("TelefonoWsp");
-                datos[7] = rs.getString("RucCliente");
-                datos[8] = rs.getString("Fax");
-                datos[9] = rs.getString("Ubigeo");
-                datos[10] = rs.getString("Email");
-                datos[11] = rs.getString("PagoTransporte");
-                datos[12] = rs.getString("KgBasRep");
-                datos[13] = rs.getString("KgAdicional");
-                datos[14] = rs.getString("LPorcMontoCCorto");
-                datos[15] = rs.getString("LBasicoCCorto");
-                datos[16] = rs.getString("LAdicionalCCorto");
-                datos[17] = rs.getString("LPorcMontoCLargo");
-                datos[18] = rs.getString("LBasicoCLargo");
-                datos[19] = rs.getString("LAdicionalCLargo");
-                datos[20] = rs.getString("SPorcMontoCCorto");
-                datos[21] = rs.getString("SBasicoCCorto");
-                datos[22] = rs.getString("SAdicionalCCorto");
-                datos[23] = rs.getString("SPorcMontoCLargo");
-                datos[24] = rs.getString("SBasicoCLargo");
-                datos[25] = rs.getString("SAdicionalCLargo");
-                modelo.addRow(datos);
-            }
-//            tamaños para la tabla tblAagentes
-            int[] anchos = {90, 7, 100, 120, 50, 50, 50, 90, 20, 50, 80, 40, 40, 40, 10, 40, 40, 10, 40, 40, 10, 40, 30, 10, 30, 30};
-            for (int i = 0; i < e_comerce.Aagente.tblAagentes.getColumnCount(); i++) {
-                e_comerce.Aagente.tblAagentes.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
-        }
-    }
+//////////    public static void Listar() {
+//////////        try {
+//////////            DefaultTableModel modelo = (DefaultTableModel) e_comerce.Aagente.tblAagentes.getModel();
+//////////            while (modelo.getRowCount() > 0) {
+//////////                modelo.removeRow(0);
+//////////            }
+//////////
+//////////            String sql = "SELECT * FROM AGENTE";
+//////////            ps = cn.prepareStatement(sql);
+//////////            rs = ps.executeQuery();
+//////////
+//////////            String datos[] = new String[26];
+//////////            while (rs.next()) {
+//////////                datos[0] = rs.getString("RucAgente");
+//////////                datos[1] = rs.getString("Tipo");
+//////////                datos[2] = rs.getString("Nombre");
+//////////                datos[3] = rs.getString("Direccion");
+//////////                datos[4] = rs.getString("TelefonoFijo");
+//////////                datos[5] = rs.getString("TelefonoCell");
+//////////                datos[6] = rs.getString("TelefonoWsp");
+//////////                datos[7] = rs.getString("RucCliente");
+//////////                datos[8] = rs.getString("Fax");
+//////////                datos[9] = rs.getString("Ubigeo");
+//////////                datos[10] = rs.getString("Email");
+//////////                datos[11] = rs.getString("PagoTransporte");
+//////////                datos[12] = rs.getString("KgBasRep");
+//////////                datos[13] = rs.getString("KgAdicional");
+//////////                datos[14] = rs.getString("LPorcMontoCCorto");
+//////////                datos[15] = rs.getString("LBasicoCCorto");
+//////////                datos[16] = rs.getString("LAdicionalCCorto");
+//////////                datos[17] = rs.getString("LPorcMontoCLargo");
+//////////                datos[18] = rs.getString("LBasicoCLargo");
+//////////                datos[19] = rs.getString("LAdicionalCLargo");
+//////////                datos[20] = rs.getString("SPorcMontoCCorto");
+//////////                datos[21] = rs.getString("SBasicoCCorto");
+//////////                datos[22] = rs.getString("SAdicionalCCorto");
+//////////                datos[23] = rs.getString("SPorcMontoCLargo");
+//////////                datos[24] = rs.getString("SBasicoCLargo");
+//////////                datos[25] = rs.getString("SAdicionalCLargo");
+//////////                modelo.addRow(datos);
+//////////            }
+////////////            tamaños para la tabla tblAagentes
+////////////            int[] anchos = {90, 7, 100, 120, 50, 50, 50, 90, 20, 50, 80, 40, 40, 40, 10, 40, 40, 10, 40, 40, 10, 40, 30, 10, 30, 30};
+////////////            for (int i = 0; i < e_comerce.Aagente.tblAagentes.getColumnCount(); i++) {
+////////////                e_comerce.Aagente.tblAagentes.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+////////////            }
+//////////
+//////////        } catch (SQLException ex) {
+//////////            System.out.println(ex.toString());
+//////////        }
+//////////    }
 
     public static void ListarMantAgente() {
         try {
@@ -349,10 +349,10 @@ public class AgentesDao {
                 modelo.addRow(datos);
             }
             //            tamaños para la tabla tblMantAgente
-            int[] anchos = {90, 7, 100, 120, 50, 50, 50, 90, 20, 50, 80, 40, 40, 40, 10, 40, 40, 10, 40, 40, 10, 40, 30, 10, 30, 30};
-            for (int i = 0; i < e_comerce.Mantenimiento.ManAgente.tblMantAgente.getColumnCount(); i++) {
-                e_comerce.Mantenimiento.ManAgente.tblMantAgente.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
-            }
+//            int[] anchos = {90, 7, 100, 120, 50, 50, 50, 90, 20, 50, 80, 40, 40, 40, 10, 40, 40, 10, 40, 40, 10, 40, 30, 10, 30, 30};
+//            for (int i = 0; i < e_comerce.Mantenimiento.ManAgente.tblMantAgente.getColumnCount(); i++) {
+//                e_comerce.Mantenimiento.ManAgente.tblMantAgente.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+//            }
         } catch (SQLException ex) {
             Logger.getLogger(AgentesDao.class.getName()).log(Level.SEVERE, null, ex);
         }

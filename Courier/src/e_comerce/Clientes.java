@@ -58,7 +58,7 @@ public class Clientes extends javax.swing.JInternalFrame {
         tblClientes = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtbuscarC = new javax.swing.JTextField();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cbClientes = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -95,7 +95,7 @@ public class Clientes extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione envio", "Enviar a Agentes", "Enviar a Tarifas" }));
+        cbClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione envio", "Enviar a Agentes", "Enviar a Tarifas" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -108,7 +108,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtbuscarC, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(117, 117, 117)
-                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86))
         );
         jPanel1Layout.setVerticalGroup(
@@ -118,7 +118,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtbuscarC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -143,7 +143,7 @@ public class Clientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtbuscarCMousePressed
 
     private void tblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClientesMouseClicked
-        if (isSelected == jComboBox4.getSelectedItem().equals("Enviar a Agentes")) {
+        if (isSelected == cbClientes.getSelectedItem().equals("Enviar a Agentes")) {
             for (int i = 0; i < tblClientes.getRowCount(); i++) {
                 int fila = tblClientes.getSelectedRow();
 
@@ -153,7 +153,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                 enviar = cod + '-' + nom;
                 ManAgente.lblRucCliente.setText(enviar);
             }
-        } else if (isSelected == jComboBox4.getSelectedItem().equals("Enviar a Tarifas")) {
+        } else if (isSelected == cbClientes.getSelectedItem().equals("Enviar a Tarifas")) {
             for (int i = 0; i < tblClientes.getRowCount(); i++) {
                 int fila = tblClientes.getSelectedRow();
 
@@ -176,7 +176,7 @@ public class Clientes extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox4;
+    public static javax.swing.JComboBox<String> cbClientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

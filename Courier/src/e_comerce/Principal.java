@@ -366,7 +366,7 @@ public class Principal extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         if (estacerrado(a)) {
             a = new Aagente();
-            escritorio.add(a).setLocation(50, 15);
+            escritorio.add(a).setLocation(25, 15);
             a.show();
         } else {
             JOptionPane.showMessageDialog(this, "La ventana Agentes\n ya esta abierta !!!", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -411,7 +411,7 @@ public class Principal extends javax.swing.JFrame {
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         if (estacerrado(ma)) {
             ma = new ManAgente();
-            escritorio.add(ma).setLocation(10, 3);
+            escritorio.add(ma).setLocation(-10, 3);
             ma.show();
         } else {
             JOptionPane.showMessageDialog(this, "La ventana Paquete\n ya esta abierta !!!", "Aviso", JOptionPane.WARNING_MESSAGE);

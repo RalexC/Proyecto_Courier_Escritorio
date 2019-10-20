@@ -47,7 +47,7 @@ public class Aagente extends javax.swing.JInternalFrame {
         modelo.addColumn("SBasicoCLargo");
         modelo.addColumn("SAdicionalCLargo");        
         tblAagentes.setModel(modelo);        
-        ad.Listar();
+        ad.listarAgentes(txtBuscarAagente.getText());
     }
 
     /**
@@ -79,6 +79,7 @@ public class Aagente extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblAagentes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tblAagentes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblAagentesMouseClicked(evt);
@@ -106,7 +107,7 @@ public class Aagente extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(534, Short.MAX_VALUE)
+                .addContainerGap(555, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(txtBuscarAagente, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,7 +128,7 @@ public class Aagente extends javax.swing.JInternalFrame {
                     .addComponent(txtBuscarAagente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

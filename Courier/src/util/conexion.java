@@ -18,18 +18,26 @@ import javax.swing.JOptionPane;
  */
 public class conexion {
 
-    public static Connection conect = null;
+    public static Connection patronSinglenton = null;
 
     public static Connection conexion() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conect = DriverManager.getConnection("jdbc:mysql://localhost/BDCOURIER", "root", ""); 
-            System.out.println("Conexion Exitosa");
+            if (patronSinglenton == null) {
+                String driver = "com.mysql.jdbc.Driver";
+                String url = "jdbc:mysql://localhost/BDCOURIER";
+                String pwd = "";
+                String usr = "root";
+                
+                Class.forName(driver);
+                patronSinglenton = DriverManager.getConnection(url, usr, pwd);                
+                System.out.println("Conexion con MYSQL exitosa");
+            }
+           
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error en la conexión" + e);
         }
-        return conect;
+        return patronSinglenton;
 //         try{
 //            if (conect== null) {
 //                String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
@@ -45,7 +53,7 @@ public class conexion {
 //        return conect;
     }
       
-    
+   
     
     public static void main(String[] args) {
         conexion();
