@@ -31,14 +31,45 @@ public class ClienteDao {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        String sql = "";
+//        String sql = "";
+//        if (busca.equals("")) {
+//            sql = "SELECT * FROM CLIENTE";
+//        } else {
+//            sql = "SELECT * FROM Cliente WHERE (RucCliente like'" + busca + "%' or NombreRazon like'" + busca + "%') "
+//                    + " order by RucCliente";
+//        }
+//        String datos[] = new String[17];
+//        try {
+//            Statement st = cn.createStatement();
+//            ResultSet rs = st.executeQuery(sql);
+//            while (rs.next()) {
+//                datos[0] = rs.getString(1);
+//                datos[1] = rs.getString(2);
+//                datos[2] = rs.getString(3);
+//                datos[3] = rs.getString(4);
+//                datos[4] = rs.getString(5);
+//                datos[5] = rs.getString(6);
+//                datos[6] = rs.getString(7);
+//                datos[7] = rs.getString(8);
+//                datos[8] = rs.getString(9);
+//                datos[9] = rs.getString(10);
+//                datos[10] = rs.getString(11);
+//                datos[11] = rs.getString(12);
+//                datos[12] = rs.getString(13);
+//                datos[13] = rs.getString(14);
+//                datos[14] = rs.getString(15);
+//                datos[15] = rs.getString(16);
+//                datos[16] = rs.getString(17);
+//                modelo.addRow(datos);
+//            }
+String sql = "";
         if (busca.equals("")) {
-            sql = "SELECT * FROM CLIENTE";
+            sql = "SELECT * FROM vw_cliente_mas_desc_ubigeo";
         } else {
-            sql = "SELECT * FROM Cliente WHERE (RucCliente like'" + busca + "%' or NombreRazon like'" + busca + "%') "
+            sql = "SELECT * FROM vw_cliente_mas_desc_ubigeo WHERE (RucCliente like'" + busca + "%' or NombreRazon like'" + busca + "%' or Ubigeo like'" + busca + "%' or Distrito like'" + busca + "%' or Provincia like'" + busca + "%' or Departamento like'" + busca + "%') "
                     + " order by RucCliente";
         }
-        String datos[] = new String[17];
+        String datos[] = new String[20];
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -60,13 +91,16 @@ public class ClienteDao {
                 datos[14] = rs.getString(15);
                 datos[15] = rs.getString(16);
                 datos[16] = rs.getString(17);
+                datos[17] = rs.getString(18);
+                datos[18] = rs.getString(19);
+                datos[19] = rs.getString(20);
                 modelo.addRow(datos);
             }
             //tamaños para la tabla jtProductos
-            int[] anchos = {60, 150, 3, 100, 35, 35, 35, 3, 80, 35, 80, 35, 4, 4, 5, 5, 5};
-            for (int i = 0; i < e_comerce.Clientes.tblClientes.getColumnCount(); i++) {
-                e_comerce.Clientes.tblClientes.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
-            }
+//            int[] anchos = {60, 150, 3, 100, 35, 35, 35, 3, 80, 35, 80, 35, 4, 4, 5, 5, 5};
+//            for (int i = 0; i < e_comerce.Clientes.tblClientes.getColumnCount(); i++) {
+//                e_comerce.Clientes.tblClientes.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+//            }
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -75,90 +109,90 @@ public class ClienteDao {
     static PreparedStatement ps;
     static ResultSet rs;
 
-    public static void Listar() {
-        try {
-            DefaultTableModel modelo = (DefaultTableModel) e_comerce.Clientes.tblClientes.getModel();
-            while (modelo.getRowCount() > 0) {
-                modelo.removeRow(0);
-            }
-            String sql = "SELECT * FROM CLIENTE";
-            ps = cn.prepareStatement(sql);
-            rs = ps.executeQuery();
+////////    public static void Listar() {
+////////        try {
+////////            DefaultTableModel modelo = (DefaultTableModel) e_comerce.Clientes.tblClientes.getModel();
+////////            while (modelo.getRowCount() > 0) {
+////////                modelo.removeRow(0);
+////////            }
+////////            String sql = "SELECT * FROM CLIENTE";
+////////            ps = cn.prepareStatement(sql);
+////////            rs = ps.executeQuery();
+////////
+////////            String datos[] = new String[17];
+////////            while (rs.next()) {
+////////                datos[0] = rs.getString(1);
+////////                datos[1] = rs.getString(2);
+////////                datos[2] = rs.getString(3);
+////////                datos[3] = rs.getString(4);
+////////                datos[4] = rs.getString(5);
+////////                datos[5] = rs.getString(6);
+////////                datos[6] = rs.getString(7);
+////////                datos[7] = rs.getString(8);
+////////                datos[8] = rs.getString(9);
+////////                datos[9] = rs.getString(10);
+////////                datos[10] = rs.getString(11);
+////////                datos[11] = rs.getString(12);
+////////                datos[12] = rs.getString(13);
+////////                datos[13] = rs.getString(14);
+////////                datos[14] = rs.getString(15);
+////////                datos[15] = rs.getString(16);
+////////                datos[16] = rs.getString(17);
+////////                modelo.addRow(datos);
+////////            }
+////////            //tamaños para la tabla jtProductos
+////////            int[] anchos = {60, 150, 3, 100, 35, 35, 35, 3, 80, 35, 80, 35, 4, 4, 5, 5, 5};
+////////            for (int i = 0; i < e_comerce.Clientes.tblClientes.getColumnCount(); i++) {
+////////                e_comerce.Clientes.tblClientes.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+////////            }
+////////
+////////        } catch (SQLException ex) {
+////////            System.out.println(ex.toString());
+////////        }
+////////    }
 
-            String datos[] = new String[17];
-            while (rs.next()) {
-                datos[0] = rs.getString(1);
-                datos[1] = rs.getString(2);
-                datos[2] = rs.getString(3);
-                datos[3] = rs.getString(4);
-                datos[4] = rs.getString(5);
-                datos[5] = rs.getString(6);
-                datos[6] = rs.getString(7);
-                datos[7] = rs.getString(8);
-                datos[8] = rs.getString(9);
-                datos[9] = rs.getString(10);
-                datos[10] = rs.getString(11);
-                datos[11] = rs.getString(12);
-                datos[12] = rs.getString(13);
-                datos[13] = rs.getString(14);
-                datos[14] = rs.getString(15);
-                datos[15] = rs.getString(16);
-                datos[16] = rs.getString(17);
-                modelo.addRow(datos);
-            }
-            //tamaños para la tabla jtProductos
-            int[] anchos = {60, 150, 3, 100, 35, 35, 35, 3, 80, 35, 80, 35, 4, 4, 5, 5, 5};
-            for (int i = 0; i < e_comerce.Clientes.tblClientes.getColumnCount(); i++) {
-                e_comerce.Clientes.tblClientes.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
-        }
-    }
-
-    public static void ListarMantenimiento() {
-        try {
-            DefaultTableModel modelo = (DefaultTableModel) e_comerce.Mantenimiento.ManCliente.tblmancliente.getModel();
-            while (modelo.getRowCount() > 0) {
-                modelo.removeRow(0);
-            }
-
-            String sql = "SELECT * FROM CLIENTE";
-            ps = cn.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            String datos[] = new String[17];
-            while (rs.next()) {
-                datos[0] = rs.getString(1);
-                datos[1] = rs.getString(2);
-                datos[2] = rs.getString(3);
-                datos[3] = rs.getString(4);
-                datos[4] = rs.getString(5);
-                datos[5] = rs.getString(6);
-                datos[6] = rs.getString(7);
-                datos[7] = rs.getString(8);
-                datos[8] = rs.getString(9);
-                datos[9] = rs.getString(10);
-                datos[10] = rs.getString(11);
-                datos[11] = rs.getString(12);
-                datos[12] = rs.getString(13);
-                datos[13] = rs.getString(14);
-                datos[14] = rs.getString(15);
-                datos[15] = rs.getString(16);
-                datos[16] = rs.getString(17);
-                modelo.addRow(datos);
-            }
-            //tamaños para la tabla jtProductos
-            int[] anchos = {60, 150, 3, 100, 35, 35, 35, 3, 80, 35, 80, 35, 4, 4, 5, 5, 5};
-            for (int i = 0; i < e_comerce.Mantenimiento.ManCliente.tblmancliente.getColumnCount(); i++) {
-                e_comerce.Mantenimiento.ManCliente.tblmancliente.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
-        }
-    }
+//////    public static void ListarMantenimiento() {
+//////        try {
+//////            DefaultTableModel modelo = (DefaultTableModel) e_comerce.Mantenimiento.ManCliente.tblmancliente.getModel();
+//////            while (modelo.getRowCount() > 0) {
+//////                modelo.removeRow(0);
+//////            }
+//////
+//////            String sql = "SELECT * FROM CLIENTE";
+//////            ps = cn.prepareStatement(sql);
+//////            rs = ps.executeQuery();
+//////
+//////            String datos[] = new String[17];
+//////            while (rs.next()) {
+//////                datos[0] = rs.getString(1);
+//////                datos[1] = rs.getString(2);
+//////                datos[2] = rs.getString(3);
+//////                datos[3] = rs.getString(4);
+//////                datos[4] = rs.getString(5);
+//////                datos[5] = rs.getString(6);
+//////                datos[6] = rs.getString(7);
+//////                datos[7] = rs.getString(8);
+//////                datos[8] = rs.getString(9);
+//////                datos[9] = rs.getString(10);
+//////                datos[10] = rs.getString(11);
+//////                datos[11] = rs.getString(12);
+//////                datos[12] = rs.getString(13);
+//////                datos[13] = rs.getString(14);
+//////                datos[14] = rs.getString(15);
+//////                datos[15] = rs.getString(16);
+//////                datos[16] = rs.getString(17);
+//////                modelo.addRow(datos);
+//////            }
+//////            //tamaños para la tabla jtProductos
+//////            int[] anchos = {60, 150, 3, 100, 35, 35, 35, 3, 80, 35, 80, 35, 4, 4, 5, 5, 5};
+//////            for (int i = 0; i < e_comerce.Mantenimiento.ManCliente.tblmancliente.getColumnCount(); i++) {
+//////                e_comerce.Mantenimiento.ManCliente.tblmancliente.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+//////            }
+//////
+//////        } catch (SQLException ex) {
+//////            System.out.println(ex.toString());
+//////        }
+//////    }
 
     public static void listarClienteMantenimiento(String busca) {
         DefaultTableModel modelo = (DefaultTableModel) e_comerce.Mantenimiento.ManCliente.tblmancliente.getModel();
@@ -168,12 +202,12 @@ public class ClienteDao {
         }
         String sql = "";
         if (busca.equals("")) {
-            sql = "SELECT * FROM CLIENTE";
+            sql = "SELECT * FROM vw_cliente_mas_desc_ubigeo";
         } else {
-            sql = "SELECT * FROM Cliente WHERE (RucCliente like'" + busca + "%' or NombreRazon like'" + busca + "%') "
+            sql = "SELECT * FROM vw_cliente_mas_desc_ubigeo WHERE (RucCliente like'" + busca + "%' or NombreRazon like'" + busca + "%') "
                     + " order by RucCliente";
         }
-        String datos[] = new String[17];
+        String datos[] = new String[20];
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -195,13 +229,16 @@ public class ClienteDao {
                 datos[14] = rs.getString(15);
                 datos[15] = rs.getString(16);
                 datos[16] = rs.getString(17);
+                datos[17] = rs.getString(18);
+                datos[18] = rs.getString(19);
+                datos[19] = rs.getString(20);
                 modelo.addRow(datos);
             }
             //tamaños para la tabla jtProductos
-            int[] anchos = {60, 150, 3, 100, 35, 35, 35, 3, 80, 35, 80, 35, 4, 4, 5, 5, 5};
-            for (int i = 0; i < e_comerce.Mantenimiento.ManCliente.tblmancliente.getColumnCount(); i++) {
-                e_comerce.Mantenimiento.ManCliente.tblmancliente.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
-            }
+//            int[] anchos = {60, 150, 3, 100, 35, 35, 35, 3, 80, 35, 80, 35, 4, 4, 5, 5, 5};
+//            for (int i = 0; i < e_comerce.Mantenimiento.ManCliente.tblmancliente.getColumnCount(); i++) {
+//                e_comerce.Mantenimiento.ManCliente.tblmancliente.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
+//            }
         } catch (SQLException ex) {
             Logger.getLogger(ClienteDao.class.getName()).log(Level.SEVERE, null, ex);
         }

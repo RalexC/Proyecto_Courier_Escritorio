@@ -136,6 +136,14 @@ public class Ubicacion extends javax.swing.JInternalFrame {
             for (int i = 0; i < tblUbicacion.getRowCount(); i++) {
                 int fila = tblUbicacion.getSelectedRow();
                 ManCliente.lblUbigeo.setText(tblUbicacion.getValueAt(fila, 0).toString());
+                
+                String nombre = null;
+                String dis = tblUbicacion.getValueAt(fila, 1).toString();
+                String pro = tblUbicacion.getValueAt(fila, 2).toString();
+                String dep = tblUbicacion.getValueAt(fila, 3).toString();
+                nombre = dis + ' ' + pro + ' ' + dep;
+                ManCliente.lblNomUbigeo.setText(nombre);
+                
 
             }
         } else if (isSelected == cbEnviar.getSelectedItem().equals("Enviar a Agentes")) {

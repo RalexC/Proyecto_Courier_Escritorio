@@ -6,7 +6,9 @@
 package e_comerce;
 
 import Dao.ClienteDao;
+import PlaceHolder.TextPrompt;
 import e_comerce.Mantenimiento.ManAgente;
+import static e_comerce.Mantenimiento.ManAgente.cbClienteono;
 import e_comerce.Mantenimiento.ManCliente;
 import e_comerce.Mantenimiento.ManTarifas;
 import javax.swing.table.DefaultTableModel;
@@ -27,6 +29,9 @@ public class Clientes extends javax.swing.JInternalFrame {
         modelo.addColumn("CreditoContado");
         modelo.addColumn("Direccion");
         modelo.addColumn("Ubigeo");
+        modelo.addColumn("Distrito");
+        modelo.addColumn("Provincia");
+        modelo.addColumn("Departamento");
         modelo.addColumn("Telefono");
         modelo.addColumn("TelefonoWsp");
         modelo.addColumn("Fax");
@@ -40,10 +45,14 @@ public class Clientes extends javax.swing.JInternalFrame {
         modelo.addColumn("Confirma");
         modelo.addColumn("Corp");
         tblClientes.setModel(modelo);
-        cdao.Listar();
+        cdao.listarCliente(txtbuscarC.getText());
+        placeholder();
 
     }
-
+    void placeholder(){
+        TextPrompt txt1 = new TextPrompt("Ejmp: Ruc, Nombre, Ubigeo, Distrito, Provincia, Departamento", txtbuscarC);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -75,6 +84,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblClientes.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tblClientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblClientesMouseClicked(evt);
@@ -96,20 +106,21 @@ public class Clientes extends javax.swing.JInternalFrame {
         });
 
         cbClientes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione envio", "Enviar a Agentes", "Enviar a Tarifas" }));
+        cbClientes.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1107, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(524, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtbuscarC, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtbuscarC, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117)
                 .addComponent(cbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
+                .addGap(218, 218, 218))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +132,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                     .addComponent(cbClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -152,6 +163,7 @@ public class Clientes extends javax.swing.JInternalFrame {
                 String nom = tblClientes.getValueAt(fila, 1).toString();
                 enviar = cod + '-' + nom;
                 ManAgente.lblRucCliente.setText(enviar);
+                ManAgente.cbClienteono.setSelectedIndex(1);
             }
         } else if (isSelected == cbClientes.getSelectedItem().equals("Enviar a Tarifas")) {
             for (int i = 0; i < tblClientes.getRowCount(); i++) {

@@ -146,15 +146,14 @@ public class AgentesDao {
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
-        String sql = "";
+         String sql = "";
         if (busca.equals("")) {
-            sql = "SELECT * FROM AGENTE";
+            sql = "SELECT * FROM VW_Agente_Mas_Desc_Ubigeo";
         } else {
-            sql = "SELECT * FROM Agente WHERE (RucAgente like'" + busca + "%' or Nombre like'" + busca + "%') "
-                    + " order by RucAgente";
+            sql = "SELECT * FROM VW_Agente_Mas_Desc_Ubigeo WHERE (RucAgente like'" + busca + "%' or Nombre like'" + busca + "%' or Ubigeo like'" + busca + "%' or Distrito like'" + busca + "%' or Provincia like'" + busca + "%' or Departamento like'" + busca + "%') ";
         }
 
-        String datos[] = new String[26];
+        String datos[] = new String[29];
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -169,24 +168,68 @@ public class AgentesDao {
                 datos[7] = rs.getString("RucCliente");
                 datos[8] = rs.getString("Fax");
                 datos[9] = rs.getString("Ubigeo");
-                datos[10] = rs.getString("Email");
-                datos[11] = rs.getString("PagoTransporte");
-                datos[12] = rs.getString("KgBasRep");
-                datos[13] = rs.getString("KgAdicional");
-                datos[14] = rs.getString("LPorcMontoCCorto");
-                datos[15] = rs.getString("LBasicoCCorto");
-                datos[16] = rs.getString("LAdicionalCCorto");
-                datos[17] = rs.getString("LPorcMontoCLargo");
-                datos[18] = rs.getString("LBasicoCLargo");
-                datos[19] = rs.getString("LAdicionalCLargo");
-                datos[20] = rs.getString("SPorcMontoCCorto");
-                datos[21] = rs.getString("SBasicoCCorto");
-                datos[22] = rs.getString("SAdicionalCCorto");
-                datos[23] = rs.getString("SPorcMontoCLargo");
-                datos[24] = rs.getString("SBasicoCLargo");
-                datos[25] = rs.getString("SAdicionalCLargo");
+                datos[10] = rs.getString(11);
+                datos[11] = rs.getString(12);
+                datos[12] = rs.getString(13);
+                datos[13] = rs.getString("Email");
+                datos[14] = rs.getString("PagoTransporte");
+                datos[15] = rs.getString("KgBasRep");
+                datos[16] = rs.getString("KgAdicional");
+                datos[17] = rs.getString("LPorcMontoCCorto");
+                datos[18] = rs.getString("LBasicoCCorto");
+                datos[19] = rs.getString("LAdicionalCCorto");
+                datos[20] = rs.getString("LPorcMontoCLargo");
+                datos[21] = rs.getString("LBasicoCLargo");
+                datos[22] = rs.getString("LAdicionalCLargo");
+                datos[23] = rs.getString("SPorcMontoCCorto");
+                datos[24] = rs.getString("SBasicoCCorto");
+                datos[25] = rs.getString("SAdicionalCCorto");
+                datos[26] = rs.getString("SPorcMontoCLargo");
+                datos[27] = rs.getString("SBasicoCLargo");
+                datos[28] = rs.getString("SAdicionalCLargo");
                 modelo.addRow(datos);
             }
+//        String sql = "";
+//        if (busca.equals("")) {
+//            sql = "SELECT * FROM AGENTE";
+//        } else {
+//            sql = "SELECT * FROM Agente WHERE (RucAgente like'" + busca + "%' or Nombre like'" + busca + "%') "
+//                    + " order by RucAgente";
+//        }
+//
+//        String datos[] = new String[26];
+//        try {
+//            Statement st = cn.createStatement();
+//            ResultSet rs = st.executeQuery(sql);
+//            while (rs.next()) {
+//                datos[0] = rs.getString("RucAgente");
+//                datos[1] = rs.getString("Tipo");
+//                datos[2] = rs.getString("Nombre");
+//                datos[3] = rs.getString("Direccion");
+//                datos[4] = rs.getString("TelefonoFijo");
+//                datos[5] = rs.getString("TelefonoCell");
+//                datos[6] = rs.getString("TelefonoWsp");
+//                datos[7] = rs.getString("RucCliente");
+//                datos[8] = rs.getString("Fax");
+//                datos[9] = rs.getString("Ubigeo");
+//                datos[10] = rs.getString("Email");
+//                datos[11] = rs.getString("PagoTransporte");
+//                datos[12] = rs.getString("KgBasRep");
+//                datos[13] = rs.getString("KgAdicional");
+//                datos[14] = rs.getString("LPorcMontoCCorto");
+//                datos[15] = rs.getString("LBasicoCCorto");
+//                datos[16] = rs.getString("LAdicionalCCorto");
+//                datos[17] = rs.getString("LPorcMontoCLargo");
+//                datos[18] = rs.getString("LBasicoCLargo");
+//                datos[19] = rs.getString("LAdicionalCLargo");
+//                datos[20] = rs.getString("SPorcMontoCCorto");
+//                datos[21] = rs.getString("SBasicoCCorto");
+//                datos[22] = rs.getString("SAdicionalCCorto");
+//                datos[23] = rs.getString("SPorcMontoCLargo");
+//                datos[24] = rs.getString("SBasicoCLargo");
+//                datos[25] = rs.getString("SAdicionalCLargo");
+//                modelo.addRow(datos);
+//            }
             //            tamaños para la tabla tblAagentes
 //            int[] anchos = {90, 7, 100, 120, 50, 50, 50, 90, 20, 50, 80, 40, 40, 40, 10, 40, 40, 10, 40, 40, 10, 40, 30, 10, 30, 30};
 //            for (int i = 0; i < e_comerce.Aagente.tblAagentes.getColumnCount(); i++) {
@@ -249,57 +292,7 @@ public class AgentesDao {
 //////////        }
 //////////    }
 
-    public static void ListarMantAgente() {
-        try {
-            DefaultTableModel modelo = (DefaultTableModel) e_comerce.Mantenimiento.ManAgente.tblMantAgente.getModel();
-            while (modelo.getRowCount() > 0) {
-                modelo.removeRow(0);
-            }
-
-            String sql = "SELECT * FROM AGENTE";
-            ps = cn.prepareStatement(sql);
-            rs = ps.executeQuery();
-
-            String datos[] = new String[26];
-            while (rs.next()) {
-                datos[0] = rs.getString("RucAgente");
-                datos[1] = rs.getString("Tipo");
-                datos[2] = rs.getString("Nombre");
-                datos[3] = rs.getString("Direccion");
-                datos[4] = rs.getString("TelefonoFijo");
-                datos[5] = rs.getString("TelefonoCell");
-                datos[6] = rs.getString("TelefonoWsp");
-                datos[7] = rs.getString("RucCliente");
-                datos[8] = rs.getString("Fax");
-                datos[9] = rs.getString("Ubigeo");
-                datos[10] = rs.getString("Email");
-                datos[11] = rs.getString("PagoTransporte");
-                datos[12] = rs.getString("KgBasRep");
-                datos[13] = rs.getString("KgAdicional");
-                datos[14] = rs.getString("LPorcMontoCCorto");
-                datos[15] = rs.getString("LBasicoCCorto");
-                datos[16] = rs.getString("LAdicionalCCorto");
-                datos[17] = rs.getString("LPorcMontoCLargo");
-                datos[18] = rs.getString("LBasicoCLargo");
-                datos[19] = rs.getString("LAdicionalCLargo");
-                datos[20] = rs.getString("SPorcMontoCCorto");
-                datos[21] = rs.getString("SBasicoCCorto");
-                datos[22] = rs.getString("SAdicionalCCorto");
-                datos[23] = rs.getString("SPorcMontoCLargo");
-                datos[24] = rs.getString("SBasicoCLargo");
-                datos[25] = rs.getString("SAdicionalCLargo");
-                modelo.addRow(datos);
-            }
-//            tamaños para la tabla tblMantAgente
-            int[] anchos = {110, 50, 150, 150, 100, 100, 100, 150, 70, 120, 110, 100, 100, 100, 60, 100, 100, 60, 100, 100, 60, 100, 100, 60, 100, 100};
-            for (int i = 0; i < e_comerce.Mantenimiento.ManAgente.tblMantAgente.getColumnCount(); i++) {
-                e_comerce.Mantenimiento.ManAgente.tblMantAgente.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
-            }
-
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
-        }
-    }
+    
 
     public static void listarAgentesMantenimiento(String busca) {
         DefaultTableModel modelo = (DefaultTableModel) e_comerce.Mantenimiento.ManAgente.tblMantAgente.getModel();
@@ -309,13 +302,13 @@ public class AgentesDao {
         }
         String sql = "";
         if (busca.equals("")) {
-            sql = "SELECT * FROM AGENTE";
+            sql = "SELECT * FROM VW_Agente_Mas_Desc_Ubigeo";
         } else {
-            sql = "SELECT * FROM Agente WHERE (RucAgente like'" + busca + "%' or Nombre like'" + busca + "%') "
+            sql = "SELECT * FROM VW_Agente_Mas_Desc_Ubigeo WHERE (RucAgente like'" + busca + "%' or Nombre like'" + busca + "%' or Ubigeo like'" + busca + "%' or Distrito like'" + busca + "%' or Provincia like'" + busca + "%' or Departamento like'" + busca + "%') "
                     + " order by RucAgente";
         }
 
-        String datos[] = new String[26];
+        String datos[] = new String[29];
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(sql);
@@ -330,22 +323,25 @@ public class AgentesDao {
                 datos[7] = rs.getString("RucCliente");
                 datos[8] = rs.getString("Fax");
                 datos[9] = rs.getString("Ubigeo");
-                datos[10] = rs.getString("Email");
-                datos[11] = rs.getString("PagoTransporte");
-                datos[12] = rs.getString("KgBasRep");
-                datos[13] = rs.getString("KgAdicional");
-                datos[14] = rs.getString("LPorcMontoCCorto");
-                datos[15] = rs.getString("LBasicoCCorto");
-                datos[16] = rs.getString("LAdicionalCCorto");
-                datos[17] = rs.getString("LPorcMontoCLargo");
-                datos[18] = rs.getString("LBasicoCLargo");
-                datos[19] = rs.getString("LAdicionalCLargo");
-                datos[20] = rs.getString("SPorcMontoCCorto");
-                datos[21] = rs.getString("SBasicoCCorto");
-                datos[22] = rs.getString("SAdicionalCCorto");
-                datos[23] = rs.getString("SPorcMontoCLargo");
-                datos[24] = rs.getString("SBasicoCLargo");
-                datos[25] = rs.getString("SAdicionalCLargo");
+                datos[10] = rs.getString(11);
+                datos[11] = rs.getString(12);
+                datos[12] = rs.getString(13);
+                datos[13] = rs.getString("Email");
+                datos[14] = rs.getString("PagoTransporte");
+                datos[15] = rs.getString("KgBasRep");
+                datos[16] = rs.getString("KgAdicional");
+                datos[17] = rs.getString("LPorcMontoCCorto");
+                datos[18] = rs.getString("LBasicoCCorto");
+                datos[19] = rs.getString("LAdicionalCCorto");
+                datos[20] = rs.getString("LPorcMontoCLargo");
+                datos[21] = rs.getString("LBasicoCLargo");
+                datos[22] = rs.getString("LAdicionalCLargo");
+                datos[23] = rs.getString("SPorcMontoCCorto");
+                datos[24] = rs.getString("SBasicoCCorto");
+                datos[25] = rs.getString("SAdicionalCCorto");
+                datos[26] = rs.getString("SPorcMontoCLargo");
+                datos[27] = rs.getString("SBasicoCLargo");
+                datos[28] = rs.getString("SAdicionalCLargo");
                 modelo.addRow(datos);
             }
             //            tamaños para la tabla tblMantAgente

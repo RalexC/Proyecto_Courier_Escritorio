@@ -6,6 +6,7 @@
 package e_comerce;
 
 import Dao.AgentesDao;
+import PlaceHolder.TextPrompt;
 import e_comerce.Mantenimiento.MantCentroCostos;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,6 +31,9 @@ public class Aagente extends javax.swing.JInternalFrame {
         modelo.addColumn("RucCliente");
         modelo.addColumn("Fax");
         modelo.addColumn("Ubigeo");
+        modelo.addColumn("Distrito");
+        modelo.addColumn("Provincia");
+        modelo.addColumn("Departamento");
         modelo.addColumn("Email");
         modelo.addColumn("PagoTransporte");
         modelo.addColumn("KgBasRep");
@@ -48,8 +52,16 @@ public class Aagente extends javax.swing.JInternalFrame {
         modelo.addColumn("SAdicionalCLargo");        
         tblAagentes.setModel(modelo);        
         ad.listarAgentes(txtBuscarAagente.getText());
+        placeholder();
     }
 
+    void placeholder(){
+        
+        TextPrompt txt1 = new TextPrompt("Ingrese Ruc, Nombre, Ubigeo, Distrito, Provincia o Departamento", txtBuscarAagente);
+        
+               
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,11 +119,11 @@ public class Aagente extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(555, Short.MAX_VALUE)
+                .addContainerGap(333, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(txtBuscarAagente, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addComponent(txtBuscarAagente, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(345, 345, 345))
             .addGroup(layout.createSequentialGroup()
@@ -124,11 +136,11 @@ public class Aagente extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
                     .addComponent(txtBuscarAagente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

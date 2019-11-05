@@ -40,6 +40,9 @@ public class ManAgente extends javax.swing.JInternalFrame {
         modelo.addColumn("RucCliente");
         modelo.addColumn("Fax");
         modelo.addColumn("Ubigeo");
+        modelo.addColumn("Distrito");
+        modelo.addColumn("Provincia");
+        modelo.addColumn("Departamento");
         modelo.addColumn("Email");
         modelo.addColumn("PagoTransporte");
         modelo.addColumn("KgBasRep");
@@ -58,8 +61,14 @@ public class ManAgente extends javax.swing.JInternalFrame {
         modelo.addColumn("SAdicionalCLargo");
         tblMantAgente.setModel(modelo);
         aDao.listarAgentesMantenimiento(txtBuscarAgentes.getText());
-        cbClienteono.setSelectedIndex(2);
+       
         placeholder();
+        comboTipoAgente();
+        montoPorcentaje1();
+        montoPorcentaje2();
+        montoPorcentaje3();
+        montoPorcentaje4();
+        combo();
     }
 
     void placeholder(){
@@ -75,7 +84,7 @@ public class ManAgente extends javax.swing.JInternalFrame {
         TextPrompt txt10 = new TextPrompt("0.00", txtKgBasRep);
         TextPrompt txt11 = new TextPrompt("0.00", txtKgAdi);
         
-        TextPrompt txt12 = new TextPrompt("Inserte Ruc o Nombre", txtBuscarAgentes);
+        TextPrompt txt12 = new TextPrompt("Ingrese Ruc, Nombre, Ubigeo, Distrito, Provincia o Departamento", txtBuscarAgentes);
         
         TextPrompt txt13 = new TextPrompt("0.00", txtBasicoCCort);
         TextPrompt txt14 = new TextPrompt("0.00", txtAdicionalCCorto);
@@ -84,10 +93,109 @@ public class ManAgente extends javax.swing.JInternalFrame {
         TextPrompt txt17 = new TextPrompt("0.00", txtSBasicoCCorto);
         TextPrompt txt18 = new TextPrompt("0.00", txtSAdicionalCCorto);
         TextPrompt txt19 = new TextPrompt("0.00", txtSBasicoCLargo);
-        TextPrompt txt20 = new TextPrompt("0.00", txtSAdicionalCLargo);
+        TextPrompt txt20 = new TextPrompt("0.00", txtSAdicionalCLargo);           
         
+    }
+    
+    
+    void combo(){
+        if (cbClienteono.getSelectedItem().equals("Si")) {
+            txtClienteono.setText("Agente Cliente");
+            
+        } else if (cbClienteono.getSelectedItem().equals("No")) {
+            txtClienteono.setText("Agente no es Cliente");
+            lblRucCliente.setText("");
+        }else {
+            txtClienteono.setText("Seleccione");
+            lblRucCliente.setText("Verifique si el Agente es cliente ->");
+        }
         
+    }
+    
+    void comboTipoAgente(){
+        if (cbTipoAgente.getSelectedItem().equals("A")) {
+            lblTipo.setText("Agente");
+            
+        } else if (cbTipoAgente.getSelectedItem().equals("M")){
+            
+            lblTipo.setText("Mensajero");
+        }
+    }
+    
+    
+    void montoPorcentaje1(){
+        if (cbPMCC.getSelectedItem().equals("M")) {
+            lblPM.setText("Monto");
+            
+        } else if (cbPMCC.getSelectedItem().equals("P")){
+            
+            lblPM.setText("Porcentaje");
+        }              
+    }
+    
+    void montoPorcentaje2(){
+    
+        if (cbPMCL.getSelectedItem().equals("M")) {
+            lblPM1.setText("Monto");
+            
+        } else if (cbPMCL.getSelectedItem().equals("P")){
+            
+            lblPM1.setText("Porcentaje");
+        }       
+    }
+    
+    void montoPorcentaje3(){
+    
+        if (cbSPMCC1.getSelectedItem().equals("M")) {
+            lblPM2.setText("Monto");
+            
+        } else if (cbSPMCC1.getSelectedItem().equals("P")){
+            
+            lblPM2.setText("Porcentaje");
+        }       
+    }
+    
+    void montoPorcentaje4(){
         
+        if (cbSPMCC2.getSelectedItem().equals("M")) {
+            lblPM3.setText("Monto");
+            
+        } else if (cbSPMCC2.getSelectedItem().equals("P")){
+            
+            lblPM3.setText("Porcentaje");
+        }
+    }
+    
+    void Limpiar(){
+        txtRucAgente.setText("");
+        txtNombreAgente.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+        txttelefonoCell.setText("");
+        txtTelefonoWsp.setText("");
+        lblUbigeo.setText("Insertar dato con el boton ->");
+        lblNombreUbi.setText("<- Insertar dato con el boton");
+        txtEmail.setText("");
+        txtFax.setText("");
+        lblRucCliente.setText("Verifique si el Agente es cliente ->");
+        txtClienteono.setText("");
+        txtPagoTransporte.setText("");
+        txtKgBasRep.setText("");
+        txtKgAdi.setText("");
+        cbPMCC.setSelectedIndex(0);
+        lblPM.setText("");
+        txtBasicoCCort.setText("");
+        txtAdicionalCCorto.setText("");
+        cbPMCL.setSelectedIndex(0);
+        lblPM1.setText("");
+        txtBasicoCLargo.setText("");
+        txtAdicionalCLargo.setText("");
+        lblPM2.setText("");
+        txtSBasicoCCorto.setText("");
+        txtSAdicionalCCorto.setText("");
+        lblPM3.setText("");
+        txtSBasicoCLargo.setText("");
+        txtSAdicionalCLargo.setText("");
         
     }
     /**
@@ -170,6 +278,7 @@ public class ManAgente extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMantAgente = new javax.swing.JTable();
@@ -412,13 +521,17 @@ public class ManAgente extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE, false)
+                    .addComponent(lblRucCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addComponent(cbClienteono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtClienteono, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblRucCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
-                    .addComponent(btnverclientes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnverclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbClienteono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtClienteono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(txtKgBasRep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -648,28 +761,38 @@ public class ManAgente extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setText("Nuevo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnActualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(27, 27, 27))
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(21, 21, 21)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnActualizar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEliminar)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder()));
@@ -706,7 +829,7 @@ public class ManAgente extends javax.swing.JInternalFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -730,11 +853,11 @@ public class ManAgente extends javax.swing.JInternalFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(147, 147, 147)
                 .addComponent(jLabel19)
-                .addGap(43, 43, 43)
-                .addComponent(txtBuscarAgentes, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(232, 232, 232))
+                .addGap(18, 18, 18)
+                .addComponent(txtBuscarAgentes, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -842,7 +965,8 @@ public class ManAgente extends javax.swing.JInternalFrame {
             aBean.setSAdicionalCLargo(Double.parseDouble(txtSAdicionalCLargo.getText()));
 
             aDao.registrarAgente(aBean);
-            aDao.ListarMantAgente();
+            aDao.listarAgentesMantenimiento(txtBuscarAgentes.getText());
+            Limpiar();
         } else if (JOptionPane.NO_OPTION == rpt) {
             JOptionPane.showMessageDialog(null, "No se realizaron ningun registro!");
         } else if (JOptionPane.CANCEL_OPTION == rpt) {
@@ -853,35 +977,19 @@ public class ManAgente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbPMCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPMCCActionPerformed
-        if (isSelected == cbPMCC.getSelectedItem().equals("M")) {
-            lblPM.setText("Monto");
-        } else if (isSelected == cbPMCC.getSelectedItem().equals("P")) {
-            lblPM.setText("Porcentaje");
-        }
+        montoPorcentaje1();
     }//GEN-LAST:event_cbPMCCActionPerformed
 
     private void cbPMCLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPMCLActionPerformed
-        if (isSelected == cbPMCL.getSelectedItem().equals("M")) {
-            lblPM1.setText("Monto");
-        } else if (isSelected == cbPMCL.getSelectedItem().equals("P")) {
-            lblPM1.setText("Porcentaje");
-        }
+        montoPorcentaje2();
     }//GEN-LAST:event_cbPMCLActionPerformed
 
     private void cbSPMCC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSPMCC1ActionPerformed
-        if (isSelected == cbSPMCC1.getSelectedItem().equals("M")) {
-            lblPM2.setText("Monto");
-        } else if (isSelected == cbSPMCC1.getSelectedItem().equals("P")) {
-            lblPM2.setText("Porcentaje");
-        }
+        montoPorcentaje3();
     }//GEN-LAST:event_cbSPMCC1ActionPerformed
 
     private void cbSPMCC2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSPMCC2ActionPerformed
-        if (isSelected == cbSPMCC2.getSelectedItem().equals("M")) {
-            lblPM3.setText("Monto");
-        } else if (isSelected == cbSPMCC2.getSelectedItem().equals("P")) {
-            lblPM3.setText("Porcentaje");
-        }
+        montoPorcentaje4();
     }//GEN-LAST:event_cbSPMCC2ActionPerformed
 
     private void txtBuscarAgentesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarAgentesKeyReleased
@@ -894,7 +1002,7 @@ public class ManAgente extends javax.swing.JInternalFrame {
 
         if (Principal.estacerrado(c)) {
             c = new Clientes();
-            escritorio.add(c).setLocation(5, 3);
+            escritorio.add(c).setLocation(5, 350);
             c.cbClientes.setSelectedItem("Enviar a Agentes");
             c.toFront();
             c.setVisible(true);
@@ -907,7 +1015,7 @@ public class ManAgente extends javax.swing.JInternalFrame {
     private void btnverubigeoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnverubigeoActionPerformed
         if (Principal.estacerrado(u)) {
             u = new Ubicacion();
-            escritorio.add(u).setLocation(250, 3);
+            escritorio.add(u).setLocation(750, 3);
             cbEnviar.setSelectedItem("Enviar a Agentes");
             u.toFront();
             u.setVisible(true);
@@ -922,15 +1030,9 @@ public class ManAgente extends javax.swing.JInternalFrame {
 
     private void cbClienteonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbClienteonoActionPerformed
 
+        combo();
         
         
-        if (cbClienteono.getSelectedItem().equals("Si")) {
-            txtClienteono.setText("Agente Cliente");
-            
-        } else {
-            txtClienteono.setText("Agente no es Cliente");
-            lblRucCliente.setText("");
-        }
     }//GEN-LAST:event_cbClienteonoActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -966,7 +1068,8 @@ public class ManAgente extends javax.swing.JInternalFrame {
             aBean.setRucAgente(txtRucAgente.getText());
 
             aDao.actualizarAgente(aBean);
-            aDao.ListarMantAgente();
+            aDao.listarAgentesMantenimiento(txtBuscarAgentes.getText());
+            Limpiar();
         } else if (rpt == JOptionPane.NO_OPTION) {
             JOptionPane.showMessageDialog(null, "No se realizaron cambios");
         } else if (rpt == JOptionPane.CANCEL_OPTION) {
@@ -988,22 +1091,32 @@ public class ManAgente extends javax.swing.JInternalFrame {
             this.cbClienteono.setSelectedItem(tblMantAgente.getValueAt(fila, 7).toString());
             this.txtFax.setText(tblMantAgente.getValueAt(fila, 8).toString());
             this.lblUbigeo.setText(tblMantAgente.getValueAt(fila, 9).toString());
-            this.txtEmail.setText(tblMantAgente.getValueAt(fila, 10).toString());
-            this.txtPagoTransporte.setText(tblMantAgente.getValueAt(fila, 11).toString());
-            this.txtKgBasRep.setText(tblMantAgente.getValueAt(fila, 12).toString());
-            this.txtKgAdi.setText(tblMantAgente.getValueAt(fila, 13).toString());
-            this.cbPMCC.setSelectedItem(tblMantAgente.getValueAt(fila, 14).toString());
-            this.txtBasicoCCort.setText(tblMantAgente.getValueAt(fila, 15).toString());
-            this.txtAdicionalCCorto.setText(tblMantAgente.getValueAt(fila, 16).toString());
-            this.cbPMCL.setSelectedItem(tblMantAgente.getValueAt(fila, 17).toString());
-            this.txtBasicoCLargo.setText(tblMantAgente.getValueAt(fila, 18).toString());
-            this.txtAdicionalCLargo.setText(tblMantAgente.getValueAt(fila, 19).toString());
-            this.cbSPMCC1.setSelectedItem(tblMantAgente.getValueAt(fila, 20).toString());
-            this.txtSBasicoCCorto.setText(tblMantAgente.getValueAt(fila, 21).toString());
-            this.txtSAdicionalCCorto.setText(tblMantAgente.getValueAt(fila, 22).toString());
-            this.cbSPMCC2.setSelectedItem(tblMantAgente.getValueAt(fila, 23).toString());
-            this.txtSBasicoCLargo.setText(tblMantAgente.getValueAt(fila, 24).toString());
-            this.txtSAdicionalCLargo.setText(tblMantAgente.getValueAt(fila, 25).toString());
+            
+            
+            String nombre = null;
+                String dis = tblMantAgente.getValueAt(fila, 10).toString();
+                String pro = tblMantAgente.getValueAt(fila, 11).toString();
+                String dep = tblMantAgente.getValueAt(fila, 12).toString();
+                nombre = dis + ' ' + pro + ' ' + dep;
+                this.lblNombreUbi.setText(nombre);
+            
+            
+            this.txtEmail.setText(tblMantAgente.getValueAt(fila, 13).toString());
+            this.txtPagoTransporte.setText(tblMantAgente.getValueAt(fila, 14).toString());
+            this.txtKgBasRep.setText(tblMantAgente.getValueAt(fila, 15).toString());
+            this.txtKgAdi.setText(tblMantAgente.getValueAt(fila, 16).toString());
+            this.cbPMCC.setSelectedItem(tblMantAgente.getValueAt(fila, 17).toString());
+            this.txtBasicoCCort.setText(tblMantAgente.getValueAt(fila, 18).toString());
+            this.txtAdicionalCCorto.setText(tblMantAgente.getValueAt(fila, 19).toString());
+            this.cbPMCL.setSelectedItem(tblMantAgente.getValueAt(fila, 20).toString());
+            this.txtBasicoCLargo.setText(tblMantAgente.getValueAt(fila, 21).toString());
+            this.txtAdicionalCLargo.setText(tblMantAgente.getValueAt(fila, 22).toString());
+            this.cbSPMCC1.setSelectedItem(tblMantAgente.getValueAt(fila, 23).toString());
+            this.txtSBasicoCCorto.setText(tblMantAgente.getValueAt(fila, 24).toString());
+            this.txtSAdicionalCCorto.setText(tblMantAgente.getValueAt(fila, 25).toString());
+            this.cbSPMCC2.setSelectedItem(tblMantAgente.getValueAt(fila, 26).toString());
+            this.txtSBasicoCLargo.setText(tblMantAgente.getValueAt(fila, 27).toString());
+            this.txtSAdicionalCLargo.setText(tblMantAgente.getValueAt(fila, 28).toString());
 
         }
     }//GEN-LAST:event_tblMantAgenteMouseClicked
@@ -1017,7 +1130,8 @@ public class ManAgente extends javax.swing.JInternalFrame {
 
         if (rpt == JOptionPane.YES_OPTION) {
             aDao.eliminarAgente(txtRucAgente.getText());
-            aDao.ListarMantAgente();
+            aDao.listarAgentesMantenimiento(txtBuscarAgentes.getText());
+            Limpiar();
         } else if (rpt == JOptionPane.NO_OPTION) {
             JOptionPane.showMessageDialog(null, "No se han realizado cambios");
         } else if (rpt == JOptionPane.CANCEL_OPTION) {
@@ -1026,15 +1140,13 @@ public class ManAgente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void cbTipoAgenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTipoAgenteActionPerformed
-        
-        if (cbTipoAgente.getSelectedItem().equals("A")) {
-            lblTipo.setText("Agente");
-            
-        } else if (cbTipoAgente.getSelectedItem().equals("M")){
-            
-            lblTipo.setText("Mensajero");
-        }
+    
+         comboTipoAgente();        
     }//GEN-LAST:event_cbTipoAgenteActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Limpiar();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1050,6 +1162,7 @@ public class ManAgente extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cbTipoAgente;
     private javax.swing.ButtonGroup grupo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
