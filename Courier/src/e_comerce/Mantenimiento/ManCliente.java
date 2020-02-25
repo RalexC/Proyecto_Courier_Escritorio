@@ -11,9 +11,17 @@ import PlaceHolder.TextPrompt;
 import e_comerce.Principal;
 import static e_comerce.Principal.escritorio;
 import e_comerce.Ubicacion;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
+
+
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import util.GenerarCodigoBarras;
+
+import util.conexion;
 
 /**
  *
@@ -236,29 +244,28 @@ public class ManCliente extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblNomUbigeo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtDireccion))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtRucCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cbCreditoContado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblcbRC, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtRznSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDireccion))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtRucCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbCreditoContado, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblcbRC, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtRznSocial, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -467,6 +474,9 @@ public class ManCliente extends javax.swing.JInternalFrame {
         jLabel18.setText("Buscar :");
 
         txtBuscarMantClientes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBuscarMantClientesKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarMantClientesKeyReleased(evt);
             }
@@ -616,6 +626,8 @@ public class ManCliente extends javax.swing.JInternalFrame {
             cDao.registrarAgente(cBean);
             cDao.listarClienteMantenimiento(txtBuscarMantClientes.getText());
             
+            
+            
             Limpiar();
         } else if (rpt == JOptionPane.NO_OPTION) {
             JOptionPane.showMessageDialog(null, "No se realizo ningun registro!");
@@ -669,6 +681,9 @@ public class ManCliente extends javax.swing.JInternalFrame {
         for (int i = 0; i < tblmancliente.getRowCount(); i++) {
             int fila = tblmancliente.getSelectedRow();
             txtRucCliente.setText(tblmancliente.getValueAt(fila, 0).toString());
+            
+            txtBuscarMantClientes.setText(tblmancliente.getValueAt(fila, 0).toString());
+            
             txtRznSocial.setText(tblmancliente.getValueAt(fila, 1).toString());
             cbCreditoContado.setSelectedItem(tblmancliente.getValueAt(fila, 2).toString());
             txtDireccion.setText(tblmancliente.getValueAt(fila, 3).toString());
@@ -721,6 +736,17 @@ public class ManCliente extends javax.swing.JInternalFrame {
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         Limpiar();
     }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void txtBuscarMantClientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarMantClientesKeyPressed
+        GenerarCodigoBarras g = new GenerarCodigoBarras();
+        
+        String bar = "";
+        bar = txtBuscarMantClientes.getText();
+        System.err.println(bar);
+        g.barras(bar,txtRznSocial.getText(),txtDireccion.getText(),bar);
+         
+            
+    }//GEN-LAST:event_txtBuscarMantClientesKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
